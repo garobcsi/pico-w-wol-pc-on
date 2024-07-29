@@ -7,14 +7,17 @@ include(pico_sdk_import.cmake)
 set(PICO_PLATFORM rp2040)
 set(PICO_BOARD pico_w)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 set(CMAKE_BUILD_TYPE "Release")
 
 project(pico_w_wol_pc_on CXX C ASM)
 
 pico_sdk_init()
 
-set(CMAKE_CXX_STANDARD 17)
-
 add_executable(${PROJECT_NAME} main.cpp)
 
 target_link_libraries(${PROJECT_NAME} pico_stdlib pico_cyw43_arch_none)
+
+pico_add_extra_outputs(${PROJECT_NAME})
