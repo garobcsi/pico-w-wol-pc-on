@@ -1,29 +1,47 @@
 cmake_minimum_required(VERSION 3.28)
 
-set(PICO_SDK_FETCH_FROM_GIT on)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include(pico_sdk_import.cmake)
+set(PICO_SDK_FETCH_FROM_GIT on)
 
 set(PICO_PLATFORM rp2040)
 set(PICO_BOARD pico_w CACHE STRING "Board type")
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+include(pico_sdk_import.cmake)
+
+if (PICO_SDK_VERSION_STRING VERSION_LESS "1.4.0")
+  message(FATAL_ERROR "Raspberry Pi Pico SDK version 1.4.0 (or later) required. Your version is ${PICO_SDK_VERSION_STRING}")
+endif()
 
 set(CMAKE_BUILD_TYPE "Release")
 
-project(pico_w_wol_pc_on CXX C ASM)
+project(ProjectName C CXX ASM)
+
+set(PICO_CXX_ENABLE_EXCEPTIONS 1)
+
+set(PICO_CXX_ENABLE_RTTI 1)
 
 pico_sdk_init()
 
 add_executable(${PROJECT_NAME} main.cpp)
+
+pico_set_program_name(ProjectName "WolPcOn")
+pico_set_program_version(ProjectName "1.0")
+
+pico_enable_stdio_uart(ProjectName 1)
+pico_enable_stdio_usb(ProjectName 1)
+
+target_link_libraries(${PROJECT_NAME}
+        pico_stdlib)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
         ${CMAKE_CURRENT_LIST_DIR}/..
 )
 
-target_link_libraries(${PROJECT_NAME} pico_stdlib
+target_link_libraries(${PROJECT_NAME}
         hardware_spi
         hardware_i2c
         hardware_dma
