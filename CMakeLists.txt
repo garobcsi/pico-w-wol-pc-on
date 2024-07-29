@@ -17,7 +17,7 @@ endif()
 
 set(CMAKE_BUILD_TYPE "Release")
 
-project(ProjectName C CXX ASM)
+project(pico_w_wol_pc_on C CXX ASM)
 
 set(PICO_CXX_ENABLE_EXCEPTIONS 1)
 
@@ -27,11 +27,11 @@ pico_sdk_init()
 
 add_executable(${PROJECT_NAME} main.cpp)
 
-pico_set_program_name(ProjectName "WolPcOn")
-pico_set_program_version(ProjectName "1.0")
+pico_set_program_name(${PROJECT_NAME} "WolPcOn")
+pico_set_program_version(${PROJECT_NAME} "1.0")
 
-pico_enable_stdio_uart(ProjectName 1)
-pico_enable_stdio_usb(ProjectName 1)
+pico_enable_stdio_uart(${PROJECT_NAME} 1)
+pico_enable_stdio_usb(${PROJECT_NAME} 1)
 
 target_link_libraries(${PROJECT_NAME}
         pico_stdlib)
