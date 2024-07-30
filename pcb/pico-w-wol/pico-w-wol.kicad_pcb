@@ -3243,6 +3243,28 @@
 		(layer "Edge.Cuts")
 		(uuid "e2a6cf1c-0170-4edc-93c6-7d198bbc5b62")
 	)
+	(gr_text "-"
+		(at 116.2 96.8 90)
+		(layer "F.SilkS")
+		(uuid "1f25787c-0136-45b7-8009-ee93b3b00d51")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "+"
+		(at 113.6 92.2 90)
+		(layer "F.SilkS")
+		(uuid "30c4c617-c878-408d-88eb-4c429ef58e07")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
 	(gr_text "WOL IN"
 		(at 118.8 105.8 90)
 		(layer "F.SilkS")
@@ -3269,6 +3291,28 @@
 		(at 118.8 96 90)
 		(layer "F.SilkS")
 		(uuid "df7760ee-1e6e-4c94-84b5-e4c6bff6b9b3")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "+"
+		(at 113.6 96.8 90)
+		(layer "F.SilkS")
+		(uuid "e01aa12f-2c75-4205-9b11-9f34ad35c6d1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "-"
+		(at 116.2 92.2 90)
+		(layer "F.SilkS")
+		(uuid "f38fd7c0-ee50-4558-ad3f-d3407617752e")
 		(effects
 			(font
 				(size 1 1)
