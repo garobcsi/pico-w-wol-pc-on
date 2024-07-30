@@ -8,6 +8,7 @@
 #define STRINGIFY_VALUE(x) STRINGIFY(x)
 
 #define WOL_PORT 9  // Standard WoL port
+#define GPIO_PIN 14
 #define LED_PIN CYW43_WL_GPIO_LED_PIN
 #define SSID your_ssid
 #define PASSWORD your_password
@@ -19,8 +20,10 @@ void wol_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, const ip_addr_t *a
         uint8_t *payload = (uint8_t *)p->payload;
         if (memcmp(payload, WOL_MAGIC_HEADER, sizeof(WOL_MAGIC_HEADER)) == 0) {
             cyw43_arch_gpio_put(LED_PIN, 1);
+            gpio_put(GPIO_PIN, 1);
             sleep_ms(200);
             cyw43_arch_gpio_put(LED_PIN, 0);
+            gpio_put(GPIO_PIN, 0);
             sleep_ms(200);
         }
     }
