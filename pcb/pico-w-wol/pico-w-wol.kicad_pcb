@@ -1216,7 +1216,7 @@
 			)
 		)
 		(fp_text user "GND"
-			(at -12.8 -19.05 135)
+			(at -12.8 -19.05 90)
 			(layer "F.SilkS")
 			(uuid "aee9fc6a-8eeb-446b-8603-402bd89a9c48")
 			(effects
@@ -1281,8 +1281,8 @@
 				)
 			)
 		)
-		(fp_text user "GP2"
-			(at -12.9 -16.51 135)
+		(fp_text user "GPIO"
+			(at -12.9 -16.51 90)
 			(layer "F.SilkS")
 			(uuid "dfb66f09-97ee-4c4f-b15b-ad82116b9806")
 			(effects
@@ -1299,17 +1299,6 @@
 			(effects
 				(font
 					(size 0.8 0.8)
-					(thickness 0.15)
-				)
-			)
-		)
-		(fp_text user "Copper Keepouts shown on Dwgs layer"
-			(at 0.1 -30.2 90)
-			(layer "Cmts.User")
-			(uuid "e508933e-86de-4d20-bd4b-80b997a5a4e6")
-			(effects
-				(font
-					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -2361,7 +2350,7 @@
 		(descr "4-lead though-hole mounted DIP package, row spacing 7.62 mm (300 mils)")
 		(tags "THT DIP DIL PDIP 2.54mm 7.62mm 300mil")
 		(property "Reference" "U1"
-			(at 0.3 4.875 90)
+			(at 0.3 -3.325 180)
 			(layer "F.SilkS")
 			(uuid "8a3216f6-e9e4-4ba6-8866-648255aee641")
 			(effects
@@ -2372,7 +2361,7 @@
 			)
 		)
 		(property "Value" "PC817"
-			(at 3.81 4.87 90)
+			(at 1.7 -4.925 180)
 			(layer "F.Fab")
 			(uuid "0f63ecae-49d4-42d4-8fa2-14f96514f691")
 			(effects
@@ -2647,7 +2636,7 @@
 		(descr "Through hole straight pin header, 1x02, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x02 2.54mm single row")
 		(property "Reference" "J1"
-			(at 0 -2.525 90)
+			(at 1.7 5.875 180)
 			(layer "F.SilkS")
 			(uuid "1babeddf-60fe-48cd-bdd2-421c2f5154d0")
 			(effects
@@ -2658,7 +2647,7 @@
 			)
 		)
 		(property "Value" "pc button input (passthrough port)"
-			(at 8.7 6.475 90)
+			(at -0.1 18.275 180)
 			(layer "F.Fab")
 			(uuid "4a59e66f-9f45-420f-976d-b9743359086f")
 			(effects
@@ -2914,7 +2903,7 @@
 		(descr "Through hole straight pin header, 1x02, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x02 2.54mm single row")
 		(property "Reference" "J2"
-			(at 0 -2.525 90)
+			(at 1.3 5.875 180)
 			(layer "F.SilkS")
 			(uuid "a7205576-71b9-423c-a86a-7a98d6797837")
 			(effects
@@ -2925,7 +2914,7 @@
 			)
 		)
 		(property "Value" "pc output"
-			(at -4.3 6.675 90)
+			(at -0.3 8.475 180)
 			(layer "F.Fab")
 			(uuid "79567726-d6a7-4184-a221-18cd078bcb99")
 			(effects
@@ -3253,6 +3242,39 @@
 		)
 		(layer "Edge.Cuts")
 		(uuid "e2a6cf1c-0170-4edc-93c6-7d198bbc5b62")
+	)
+	(gr_text "WOL IN"
+		(at 118.8 105.8 90)
+		(layer "F.SilkS")
+		(uuid "36059a95-02fd-44ec-9123-2c1ceffbd846")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "FP OUT"
+		(at 118.8 90.8 90)
+		(layer "F.SilkS")
+		(uuid "96821989-e0ed-4094-9927-0019eae07463")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "BT IN|"
+		(at 118.8 96 90)
+		(layer "F.SilkS")
+		(uuid "df7760ee-1e6e-4c94-84b5-e4c6bff6b9b3")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
 	)
 	(segment
 		(start 113.735 94.5)
