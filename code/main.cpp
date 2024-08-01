@@ -2,7 +2,6 @@
 #include "pico/cyw43_arch.h"
 #include "lwip/pbuf.h"
 #include "lwip/udp.h"
-#include <string.h>
 
 #define STRINGIFY(x) #x
 #define STRINGIFY_VALUE(x) STRINGIFY(x)
@@ -37,11 +36,32 @@ void wol_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, const ip_addr_t *a
     pbuf_free(p);
 }
 
+void connect_to_wifi() {
+    while (cyw43_arch_wifi_connect_timeout_ms(STRINGIFY_VALUE(SSID), STRINGIFY_VALUE(PASSWORD), CYW43_AUTH_WPA2_AES_PSK, 30000) != 0) {
+#ifndef TRUN_OFF_PRINTF
+        printf("WiFi connection failed, retrying...\n");
+#endif
+#ifndef TURN_OFF_LIGHT
+        cyw43_arch_gpio_put(LED_PIN, true);
+#endif
+        sleep_ms(5000);  // Wait before retrying
+    }
+#ifndef TRUN_OFF_PRINTF
+    printf("Connected to WiFi\n");
+#endif
+#ifndef TURN_OFF_LIGHT
+    cyw43_arch_gpio_put(LED_PIN, false);
+#endif
+}
+
 int main() {
     stdio_init_all();
     if (cyw43_arch_init()) {
 #ifndef TRUN_OFF_PRINTF
         printf("WiFi init failed\n");
+#endif
+#ifndef TURN_OFF_LIGHT
+        cyw43_arch_gpio_put(LED_PIN, true);
 #endif
         return 1;
     }
@@ -52,18 +72,7 @@ int main() {
 
     cyw43_arch_enable_sta_mode();
 
-    if (cyw43_arch_wifi_connect_timeout_ms(STRINGIFY_VALUE(SSID), STRINGIFY_VALUE(PASSWORD), CYW43_AUTH_WPA2_AES_PSK, 30000) != 0) {
-#ifndef TRUN_OFF_PRINTF
-        printf("WiFi connection failed\n");
-#endif
-#ifndef TURN_OFF_LIGHT
-        cyw43_arch_gpio_put(LED_PIN, true);
-#endif
-        return 1;
-    }
-#ifndef TRUN_OFF_PRINTF
-    printf("Connected to WiFi\n");
-#endif
+    connect_to_wifi();
 
     struct udp_pcb *pcb;
     pcb = udp_new_ip_type(IPADDR_TYPE_ANY);
@@ -92,6 +101,17 @@ int main() {
 
     while (true) {
         cyw43_arch_poll();
+
+        // Check if still connected to WiFi
+        if (cyw43_tcpip_link_status(&cyw43_state, 0) != CYW43_LINK_UP) {
+#ifndef TRUN_OFF_PRINTF
+            printf("WiFi connection lost, reconnecting...\n");
+#endif
+#ifndef TURN_OFF_LIGHT
+            cyw43_arch_gpio_put(LED_PIN, true);
+#endif
+            connect_to_wifi();
+        }
     }
 
     cyw43_arch_deinit();
