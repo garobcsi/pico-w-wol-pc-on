@@ -24,12 +24,12 @@ void wol_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, const ip_addr_t *a
 #ifndef TURN_OFF_LIGHT
             cyw43_arch_gpio_put(LED_PIN, true);
 #endif
-            gpio_put(GPIO_PIN, false);
+            gpio_put(GPIO_PIN, true);
             sleep_ms(200);
 #ifndef TURN_OFF_LIGHT
             cyw43_arch_gpio_put(LED_PIN, false);
 #endif
-            gpio_put(GPIO_PIN, true);
+            gpio_put(GPIO_PIN, false);
             sleep_ms(200);
         }
     }
@@ -68,7 +68,7 @@ int main() {
 
     gpio_init(GPIO_PIN);
     gpio_set_dir(GPIO_PIN, GPIO_OUT);
-    gpio_put(GPIO_PIN, true);
+    gpio_put(GPIO_PIN, false);
 
     cyw43_arch_enable_sta_mode();
 
